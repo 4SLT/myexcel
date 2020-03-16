@@ -1,17 +1,16 @@
-package com.fslt.myexcel.pojo;
+package com.fslt.myexcel.model;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;
 
 /**
- * @description: SupplierModel
+ * @description: SupplierModel(必须满足驼峰)
  * @date: 2020/3/15 18:13
  * @author: zongxiong.lin
  * @version: 1.0
  */
 @Data
-public class SupplierModel extends BaseRowModel {
+public class SupplierModel{
 
     @ExcelProperty(value = "主键id", index = 0)
     private Integer id;
@@ -63,6 +62,5 @@ public class SupplierModel extends BaseRowModel {
 
     @ExcelProperty(value = "创建时间", index = 16)
     private String createTime;
-
 
 }

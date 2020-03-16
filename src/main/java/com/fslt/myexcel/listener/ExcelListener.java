@@ -2,6 +2,8 @@ package com.fslt.myexcel.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
+import com.fslt.myexcel.model.SupplierModel;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,26 +14,40 @@ import java.util.List;
  * @author: zongxiong.lin
  * @version: 1.0
  */
-public class ExcelListener extends AnalysisEventListener {
+@Slf4j
+public class ExcelListener extends AnalysisEventListener<SupplierModel> {
 
-    public List<Object> datas = new ArrayList<>();
+    private List<SupplierModel> datas = new ArrayList<>();
 
-
+    /**
+     * 每一条数据解析都会调用此方法
+     *
+     * @param data
+     * @param analysisContext
+     */
     @Override
-    public void invoke(Object o, AnalysisContext analysisContext) {
-        datas.add(o);
+    public void invoke(SupplierModel data, AnalysisContext analysisContext) {
+        log.info("解析到一条数据:{}", data);
+        //如果数据量太大需要在此做相应处理，以防OOM
+        datas.add(data);
     }
 
+
+    /**
+     * 数据解析完成后调用
+     *
+     * @param analysisContext
+     */
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
-
+        log.info("数据解析完成");
     }
 
-    public List<Object> getDatas() {
+    public List<SupplierModel> getDatas() {
         return datas;
     }
 
-    public void setDatas(List<Object> datas) {
+    public void setDatas(List<SupplierModel> datas) {
         this.datas = datas;
     }
 }
