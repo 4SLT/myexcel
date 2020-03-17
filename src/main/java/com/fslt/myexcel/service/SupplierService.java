@@ -28,4 +28,22 @@ public interface SupplierService {
      * @return
      */
     List<SupplierModel> analysisGroup(List<SupplierModel> list);
+
+    /**
+     * 按组分析数据，将认证状态只有n个认证通过的组筛除
+     *
+     * @param list
+     * @param n
+     * @return
+     */
+    List<SupplierModel> analysisGroupByStatus(List<SupplierModel> list, int n);
+
+    /**
+     * 按组分析数据，将认证状态大于n个认证通过的组筛除
+     *
+     * @param list
+     * @param n
+     * @return
+     */
+    List<SupplierModel> analysisGroupByStatusExceedN(List<SupplierModel> list, int n);
 }

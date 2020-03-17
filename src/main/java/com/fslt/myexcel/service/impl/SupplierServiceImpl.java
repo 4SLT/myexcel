@@ -49,8 +49,35 @@ public class SupplierServiceImpl implements SupplierService {
                 return list;
             }
         }
-        return new ArrayList<SupplierModel>();
+        return new ArrayList<>();
     }
 
+    @Override
+    public List<SupplierModel> analysisGroupByStatus(List<SupplierModel> list, int n) {
+        int count = 0;
+        for (SupplierModel model : list) {
+            if (model.getAuthenticationStatus().equals("认证通过")) {
+                ++count;
+            }
+        }
+        if (count == n) {
+            return list;
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<SupplierModel> analysisGroupByStatusExceedN(List<SupplierModel> list, int n) {
+        int count = 0;
+        for (SupplierModel model : list) {
+            if (model.getAuthenticationStatus().equals("认证通过")) {
+                ++count;
+            }
+        }
+        if (count > n) {
+            return list;
+        }
+        return new ArrayList<>();
+    }
 
 }
